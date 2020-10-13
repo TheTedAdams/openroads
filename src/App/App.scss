@@ -1,0 +1,61 @@
+.App-logo {
+  height: 5rem;
+  display: block;
+}
+
+.App-header {
+  background-color: #636463;
+  padding: 1rem 1rem 0 1rem;
+  color: white;
+  display: flex;
+}
+
+.App-title {
+  font-size: 1.5em;
+  flex: 1;
+}
+
+.App-title-unread-count {
+  background: #ee3524;
+  color: white;
+  border-radius: 2px;
+  border: solid 1px white;
+  font-size: 1rem;
+  line-height: 1rem;
+  height: 1rem;
+  padding: 0.2rem 0.3rem;
+  margin-left: 0.3rem;
+}
+
+.NotesSidebar {
+  background: #a19689;
+  border-right: solid 1px #636463;
+  color: white;
+}
+
+.NotesSidebar-title {
+  margin: 0;
+  font-size: 1.25rem;
+  padding: 0.2rem;
+}
+
+.NoteDetails {
+  padding: 1rem;
+}
+
+.NotesSidebarItem {
+  padding: 0 0.3rem;
+  display: flex;
+  flex-direction: row;
+  border-top: solid 1px #636463;
+}
+
+.NotesSidebarItem.selected {
+  background: #ead592;
+}
+
+.NotesSidebarItem-title {
+  margin: 0.3rem 0;
+  display: inline-block;
+  flex: 1;
+}
