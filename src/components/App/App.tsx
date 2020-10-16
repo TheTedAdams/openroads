@@ -2,10 +2,8 @@ import './App.scss';
 
 import React, { Component } from 'react';
 
+import { AppHeader, NoteDetails, NotesSidebar } from '../';
 import { Note } from '../../models';
-import { AppHeader } from '../AppHeader/AppHeader';
-import { NoteDetails } from '../NoteDetails/NoteDetails';
-import { NotesSidebar } from '../NotesSidebar/NotesSidebar';
 
 interface AppProps {
   /* EMPTY */
