@@ -12,14 +12,25 @@ interface AppState {
   notes: Note[];
   currentNoteIndex: number;
   loading: boolean;
+  errorMessage?: string;
 }
 
 class App extends React.Component<any, AppState> {
   private async loadNotesIntoState() {
-    const notes = await fetch(
-      `${process.env.REACT_APP_API_URI}/notes`
-    ).then((response) => response.json());
-    this.setState((state) => ({ ...state, loading: false, notes }));
+    try {
+      const notes = await fetch(
+        `${process.env.REACT_APP_API_URI}/notes`
+      ).then((response) => response.json());
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulating loading time to test loading state
+      this.setState((state) => ({ ...state, loading: false, notes }));
+    } catch (e) {
+      this.setState((state) => ({
+        ...state,
+        loading: false,
+        errorMessage: 'Failed to load notes.',
+      }));
+      console.error('Failed to load notes', e);
+    }
   }
 
   constructor(props: any) {
@@ -34,7 +45,6 @@ class App extends React.Component<any, AppState> {
 
   // Changing to componentDidMount per current react recommendations (Warning in console) -TedA
   componentDidMount() {
-    // TODO fetch notes and push them into state.
     this.loadNotesIntoState();
   }
 
@@ -57,33 +67,43 @@ class App extends React.Component<any, AppState> {
     });
   };
 
-  selectNote = (e: any) => {
-    this.setState({ currentNoteIndex: e.currentTarget.id });
+  selectNote: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    this.setState({ currentNoteIndex: Number(e.currentTarget.id) });
   };
 
   getNotesRows() {
-    // TODO fix the selected row highlight, which breaks on subsequent clicks to the sidebar.
+    // There's some pretty big accessibility problems here that I would tackle in a real app.
+    // Clickable <div> should be replaced with a proper aria tab implementation
+    // To at least fix the worst of it I'm swapping the div for a button so that we get keyboard interaction
     return this.state.notes.map((note, index) => (
-      <div
+      <button
         key={note.subject} // I would assume in a real app this would be note.id, as subject is not guaranteed to be unique. -TedA
+        onClick={this.selectNote}
+        id={String(index)} // Given that element IDs need to be unique across the page, I'd probably find another way to do the selection.
         className={classNames('NotesSidebarItem', {
+          // The .indexOf(note) implementation that was here would be adding a lot of looping to get the index number that we already have available.
           selected: index === this.state.currentNoteIndex,
         })}
-        onClick={this.selectNote}
-        id={String(this.state.notes.indexOf(note))}
       >
         <h4 className="NotesSidebarItem-title">{note.subject}</h4>
         {note.read && <img alt="Check Mark" src={checkMark} />}
-      </div>
+      </button>
     ));
   }
 
   // TODO this component should be broken into separate components.
 
   render() {
+    const selectedNote = this.state.notes?.[this.state.currentNoteIndex];
+
     return (
       <div className="App">
         <header className="App-header">
+          {/* Just wanted to call out that having padding embedded in the svg is probably not ideal.
+           ** I would get the padding removed from the svg and then put align-items: center on the heading instead of the
+           ** current mixture of padding and margin (and padding embedded inside the svg). This would make it much more easy
+           ** adjust things later.
+           */}
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Notes Viewer Test App</h1>
           <div>
@@ -105,14 +125,10 @@ class App extends React.Component<any, AppState> {
         <section className="NoteDetails">
           {/* While 0 is falsey, React will render it, so using .length for logic in JSX is not safe. */}
           {this.state.notes.length > 0 && (
-            <h3 className="NoteDetails-title">
-              {this.state.notes[this.state.currentNoteIndex].subject}
-            </h3>
+            <h3 className="NoteDetails-title">{selectedNote.subject}</h3>
           )}
           {this.state.notes.length > 0 && (
-            <p className="NoteDetails-subject">
-              {this.state.notes[this.state.currentNoteIndex].body}
-            </p>
+            <p className="NoteDetails-subject">{selectedNote.body}</p>
           )}
           <button onClick={this.markAsRead}>Mark as read</button>
         </section>

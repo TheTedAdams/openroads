@@ -57,10 +57,23 @@
     padding: 0 0.3rem;
     display: flex;
     flex-direction: row;
-    border-top: solid 1px $gray;
+    border-style: solid;
+    border-color: $gray;
+    border-width: 1px 0 0;
+
+    // Button reset stuff
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: inherit;
+    color: inherit;
 
     &.selected {
       background: $yellow;
+    }
+
+    &:not(.selected):hover {
+      background: rgba($yellow, 0.4);
     }
 
     &-title {
