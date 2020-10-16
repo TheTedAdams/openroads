@@ -114,7 +114,7 @@ class App extends React.Component<any, AppState> {
                ** number with useMemo. I could store it in state but it's trickier in this class component, so I'm
                ** leaving this simple implementation for now.
                */}
-              {this.state.notes.filter((n) => n.read).length.toLocaleString()}
+              {this.state.notes.filter((n) => !n.read).length.toLocaleString()}
             </span>
           </div>
         </header>
