@@ -63,12 +63,11 @@ class App extends React.Component<any, AppState> {
 
   getNotesRows() {
     // TODO fix the selected row highlight, which breaks on subsequent clicks to the sidebar.
-    return this.state.notes.map((note: any) => (
+    return this.state.notes.map((note, index) => (
       <div
-        key={note.subject}
+        key={note.subject} // I would assume in a real app this would be note.id, as subject is not guaranteed to be unique. -TedA
         className={classNames('NotesSidebarItem', {
-          selected:
-            this.state.notes.indexOf(note) === this.state.currentNoteIndex,
+          selected: index === this.state.currentNoteIndex,
         })}
         onClick={this.selectNote}
         id={String(this.state.notes.indexOf(note))}
@@ -90,8 +89,12 @@ class App extends React.Component<any, AppState> {
           <div>
             Unread:
             <span className="App-title-unread-count">
-              {/* TODO this should be a count of only the unread messages */}
-              {this.state.notes.length}
+              {/* Adding .toLocaleString() because this gives us great freebie handling for 4+ digit numbers */}
+              {/* In a functional component (which I would probably write this as in 2020), I would memoize this
+               ** number with useMemo. I could store it in state but it's trickier in this class component, so I'm
+               ** leaving this simple implementation for now.
+               */}
+              {this.state.notes.filter((n) => n.read).length.toLocaleString()}
             </span>
           </div>
         </header>
