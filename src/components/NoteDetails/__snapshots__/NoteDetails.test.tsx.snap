@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders like the snapshot 1`] = `
+<section
+  className="NoteDetails"
+>
+  <h3
+    className="NoteDetails-title"
+  >
+    SUBJECT
+  </h3>
+  <p
+    className="NoteDetails-subject"
+  >
+    BODY
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Mark as read
+  </button>
+</section>
+`;

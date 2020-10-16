@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders like the snapshot 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="AppHeader"
+  >
+    <img
+      alt="logo"
+      className="AppHeader-logo"
+      src="logo.svg"
+    />
+    <h1
+      className="AppHeader-title"
+    >
+      Notes Viewer Test App
+    </h1>
+    <div>
+      Unread:
+      <span
+        className="AppHeader-title-unread-count"
+      >
+        -
+      </span>
+    </div>
+  </header>
+  <section
+    className="NotesSidebar"
+  >
+    <h2
+      className="NotesSidebar-title"
+    >
+      Available Notes:
+    </h2>
+    <div
+      className="NotesSidebar-list"
+    >
+      <p
+        className="NotesSidebar-message"
+      >
+        Loading...
+      </p>
+    </div>
+  </section>
+  <section
+    className="NoteDetails"
+  >
+    <p>
+      Loading...
+    </p>
+  </section>
+</div>
+`;

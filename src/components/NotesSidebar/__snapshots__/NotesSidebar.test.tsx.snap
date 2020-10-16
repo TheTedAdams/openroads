@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders like the snapshot 1`] = `
+<section
+  className="NotesSidebar"
+>
+  <h2
+    className="NotesSidebar-title"
+  >
+    Available Notes:
+  </h2>
+  <div
+    className="NotesSidebar-list"
+  >
+    <button
+      className="NotesSidebarItem selected"
+      onClick={[Function]}
+    >
+      <h4
+        className="NotesSidebarItem-title"
+      >
+        SUBJECT 1
+      </h4>
+    </button>
+    <button
+      className="NotesSidebarItem"
+      onClick={[Function]}
+    >
+      <h4
+        className="NotesSidebarItem-title"
+      >
+        SUBJECT 2
+      </h4>
+      <img
+        alt="Check Mark"
+        src="check-mark.svg"
+      />
+    </button>
+  </div>
+</section>
+`;
