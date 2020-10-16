@@ -13,7 +13,7 @@ class App extends React.Component<any, any> {
 
     this.state = {
       notes: [],
-      currentNoteIndex: 0
+      currentNoteIndex: 0,
     };
   }
 
@@ -26,7 +26,7 @@ class App extends React.Component<any, any> {
     this.setState((currentState: any) => {
       let marked = {
         ...currentState.notes[currentState.currentNoteIndex],
-        read: true
+        read: true,
       };
       let notes = [...currentState.notes];
       notes[currentState.currentNoteIndex] = marked;
@@ -45,13 +45,14 @@ class App extends React.Component<any, any> {
       <div
         key={note.subject}
         className={classNames('NotesSidebarItem', {
-          selected: this.state.notes.indexOf(note) === this.state.currentNoteIndex
+          selected:
+            this.state.notes.indexOf(note) === this.state.currentNoteIndex,
         })}
         onClick={this.selectNote}
         id={this.state.notes.indexOf(note)}
       >
-        <h4 className='NotesSidebarItem-title'>{note.subject}</h4>
-        {note.read && <img alt='Check Mark' src={checkMark} />}
+        <h4 className="NotesSidebarItem-title">{note.subject}</h4>
+        {note.read && <img alt="Check Mark" src={checkMark} />}
       </div>
     ));
   }
@@ -60,33 +61,33 @@ class App extends React.Component<any, any> {
 
   render() {
     return (
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Notes Viewer Test App</h1>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Notes Viewer Test App</h1>
           <div>
             Unread:
-            <span className='App-title-unread-count'>
+            <span className="App-title-unread-count">
               {/* TODO this should be a count of only the unread messages */}
               {this.state.notes.length}
             </span>
           </div>
         </header>
-        <section className='NotesSidebar'>
+        <section className="NotesSidebar">
           {/* TODO this section should be rendered as a sidebar, left of the NoteDetails, taking up
         the full height of the space beneath the header. */}
-          <h2 className='NotesSidebar-title'>Available Notes:</h2>
-          <div className='NotesSidebar-list'>{this.getNotesRows()}</div>
+          <h2 className="NotesSidebar-title">Available Notes:</h2>
+          <div className="NotesSidebar-list">{this.getNotesRows()}</div>
         </section>
-        <section className='NoteDetails'>
+        <section className="NoteDetails">
           {/* TODO some rendering bugs in here when list is empty */}
           {this.state.notes.length && (
-            <h3 className='NoteDetails-title'>
+            <h3 className="NoteDetails-title">
               {this.state.notes[this.state.currentNoteIndex].subject}
             </h3>
           )}
           {this.state.notes.length && (
-            <p className='NoteDetails-subject'>
+            <p className="NoteDetails-subject">
               {this.state.notes[this.state.currentNoteIndex].body}
             </p>
           )}
