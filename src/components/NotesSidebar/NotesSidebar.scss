@@ -1,0 +1,50 @@
+@import '../../styles/colors';
+
+.NotesSidebar {
+  grid-column: 1;
+  grid-row: 2;
+  background: $brown;
+  border-right: solid 1px $gray;
+  color: white;
+
+  p {
+    margin: 0.3rem;
+  }
+
+  &-title {
+    margin: 0;
+    font-size: 1.25rem;
+    padding: 0.2rem;
+  }
+
+  &Item {
+    padding: 0 0.3rem;
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+    border-color: $gray;
+    border-width: 1px 0 0;
+    align-items: center;
+
+    // Button reset stuff
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: inherit;
+    color: inherit;
+
+    &.selected {
+      background: $yellow;
+    }
+
+    &:not(.selected):hover {
+      background: rgba($yellow, 0.4);
+    }
+
+    &-title {
+      margin: 0.3rem 0;
+      display: inline-block;
+      flex: 1;
+    }
+  }
+}
