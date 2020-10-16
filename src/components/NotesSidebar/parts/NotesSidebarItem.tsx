@@ -23,7 +23,6 @@ export const NotesSidebarItem: FC<NotesSidebarItemProps> = ({
   // To at least fix the worst of it I'm swapping the div for a button so that we get keyboard interaction
   return (
     <button
-      key={note.subject} // I would assume in a real app this would be note.id, as subject is not guaranteed to be unique. -TedA
       onClick={handleClick}
       className={classNames('NotesSidebarItem', { selected: isSelected })}
     >

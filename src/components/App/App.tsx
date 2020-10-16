@@ -22,7 +22,7 @@ export class App extends Component<AppProps, AppState> {
       const notes = await fetch(
         `${process.env.REACT_APP_API_URI}/notes`
       ).then((response) => response.json());
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulating loading time to test loading state
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Simulating loading time to test loading state (Just leaving in because it's a test)
       this.setState((state) => ({ ...state, loading: false, notes }));
     } catch (e) {
       this.setState((state) => ({
@@ -44,12 +44,12 @@ export class App extends Component<AppProps, AppState> {
     };
   }
 
-  // Changing to componentDidMount per current react recommendations (Warning in console) -TedA
+  // Changing from componentWillMount to componentDidMount per current react recommendations (Warning in console) -TedA
   componentDidMount() {
     this.loadNotesIntoState();
   }
 
-  // TODO this callback isn't working
+  // TODO this callback isn't working (fixed)
   // Two ways to fix this. .bind'ing the function in constructor, or changing it to an arrow function
   // Both methods have the effect of setting `this` to be the component instance
   // Preferences could be decided as a team style decision.
@@ -74,6 +74,7 @@ export class App extends Component<AppProps, AppState> {
 
   render() {
     const { notes, currentNoteIndex, loading } = this.state;
+    // TODO: Display error message if it is set
 
     return (
       <div className="App">

@@ -26,10 +26,11 @@ export const NotesSidebar: FC<NotesSidebarProps> = ({
       <h2 className="NotesSidebar-title">Available Notes:</h2>
       <div className="NotesSidebar-list">
         {isLoading ? (
-          <p>Loading...</p>
+          <p className="NotesSidebar-message">Loading...</p>
         ) : (
           notes.map((note, index) => (
             <NotesSidebarItem
+              key={note.subject} // I would assume in a real app this would be note.id, as subject is not guaranteed to be unique. -TedA
               note={note}
               isSelected={index === currentNoteIndex}
               index={index}
