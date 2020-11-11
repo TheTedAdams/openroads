@@ -1,0 +1,82 @@
+@import "../styles/colors.scss";
+
+.status {
+  width: 50%;
+  max-width: 300px;
+  margin: 3em auto;
+  padding: 1em;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #FFC100;
+  color: white;
+  font-weight: 700;
+}
+
+.notes-wrapper {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.NotesSidebar {
+  background: $secondary-color;
+  border-right: solid 1px #636463;
+  color: white;
+  width: 30%;
+
+  .NotesSidebar-title {
+    margin: 0;
+    font-size: 1.25rem;
+    padding: 1em;
+  }
+
+  .NotesSidebarItem {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    border-top: solid 1px #636463;
+    justify-content: space-between;
+    align-items: center;
+    &:last-of-type {
+      border-bottom:1px solid #636463;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    img {
+      padding-left: 1rem;
+      width: 24px;
+    }
+  }
+  
+  .NotesSidebarItem.selected {
+    background: $highlight-color;
+  }
+  
+  .NotesSidebarItem-title {
+    margin: 0.3rem 0;
+    width:70%;
+  }
+}
+
+.NoteDetails {
+  padding: 1.5em;
+  width: 70%;
+
+  button {
+    background: $status-color;
+    border: none;
+    padding: .75em 1.5em;
+    color: white;
+    font-weight: 900;
+    &:hover {
+      background:#e5b624;
+      cursor:pointer;
+    }
+    &:disabled {
+      background-color: $status-color;
+      cursor: default;
+      opacity: .5;
+    }
+  }
+}
