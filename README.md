@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app),
 as such it requires Node >= 6. It also uses [yarn](https://yarnpkg.com/en/) to install dependencies, (though `NPM` might
-work... we haven't tested.)
+work... we haven't tested.) //it works! :) 
 
 ## Explanation
 
